@@ -1,0 +1,164 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --text-color: #2c3e50;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.navbar {
+    background-color: #ffffff !important;
+    box-shadow: var(--shadow);
+    padding: 1rem 0;
+}
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    font-size: 1.5rem;
+}
+.nav-link {
+    color: var(--primary-color) !important;
+    font-weight: 500;
+    transition: var(--transition);
+}
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+    transform: translateY(-2px);
+}
+.list-group-item {
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 8px !important;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+.list-group-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn {
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+.btn-primary {
+    background-color: var(--secondary-color);
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+.btn-danger {
+    background-color: var(--accent-color);
+    border: none;
+}
+.btn-secondary {
+    background-color: #95a5a6;
+    border: none;
+}
+.form-control {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    transition: var(--transition);
+}
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+    border-color: var(--secondary-color);
+}
+.form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+.quiz-question {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+.quiz-options {
+    padding: 10px 0;
+}
+.quiz-option {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+.quiz-option:hover {
+    background-color: #e9ecef;
+}
+.dashboard-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+.alert {
+    border-radius: 8px;
+    border: none;
+    box-shadow: var(--shadow);
+}
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }  
+    .navbar-collapse {
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #2980b9;
+}
