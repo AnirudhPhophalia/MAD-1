@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Create Quiz{% endblock %}
+{% block content %}
+<h2>Create Quiz for {{ chapter.name }}</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Quiz Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="date_of_quiz" class="form-label">Date of Quiz</label>
+        <input type="date" class="form-control" id="date_of_quiz" name="date_of_quiz" required>
+    </div>
+    <div class="mb-3">
+        <label for="time_duration" class="form-label">Time Duration (minutes)</label>
+        <input type="number" class="form-control" id="time_duration" name="time_duration" required>
+    </div>
+    <div class="mb-3">
+        <label for="remarks" class="form-label">Remarks</label>
+        <textarea class="form-control" id="remarks" name="remarks" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Quiz</button>
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

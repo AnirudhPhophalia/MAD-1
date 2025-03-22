@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Create Question{% endblock %}
+{% block content %}
+<h2>Create Question for {{ quiz.chapter.name }} Quiz</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="question_statement" class="form-label">Question</label>
+        <textarea class="form-control" id="question_statement" name="question_statement" rows="3" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="option1" class="form-label">Option 1</label>
+        <input type="text" class="form-control" id="option1" name="option1" required>
+    </div>
+    <div class="mb-3">
+        <label for="option2" class="form-label">Option 2</label>
+        <input type="text" class="form-control" id="option2" name="option2" required>
+    </div>
+    <div class="mb-3">
+        <label for="option3" class="form-label">Option 3</label>
+        <input type="text" class="form-control" id="option3" name="option3" required>
+    </div>
+    <div class="mb-3">
+        <label for="option4" class="form-label">Option 4</label>
+        <input type="text" class="form-control" id="option4" name="option4" required>
+    </div>
+    <div class="mb-3">
+        <label for="correct_option" class="form-label">Correct Option</label>
+        <select class="form-control" id="correct_option" name="correct_option" required>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Question</button>
+    <button type="submit" name="add_another" value="1" class="btn btn-secondary">Add and Create Another</button>
+</form>
+{% endblock %}

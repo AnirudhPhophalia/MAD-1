@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Student Quiz Answers{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Quiz Review for {{ score.user.full_name }}</h2>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>Quiz Details</h5>
+            <p><strong>Subject:</strong> {{ score.quiz.chapter.subject.name }}</p>
+            <p><strong>Chapter:</strong> {{ score.quiz.chapter.name }}</p>
+            <p><strong>Score:</strong> {{ score.total_scored }}/{{ questions|length }}</p>
+            <p><strong>Attempt Date:</strong> {{ score.time_stamp_of_attempt.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        </div>
+    </div>
+    <div class="questions-review">
+        {% for question in questions %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Question {{ loop.index }}</h5>
+                <p class="card-text">{{ question.question_statement }}</p>                
+                <div class="options">
+                    <p class="{% if question.correct_option == 1 %}text-success{% endif %}">
+                        1. {{ question.option1 }}
+                        {% if question.correct_option == 1 %}<span class="badge bg-success">Correct Answer</span>{% endif %}
+                    </p>
+                    <p class="{% if question.correct_option == 2 %}text-success{% endif %}">
+                        2. {{ question.option2 }}
+                        {% if question.correct_option == 2 %}<span class="badge bg-success">Correct Answer</span>{% endif %}
+                    </p>
+                    <p class="{% if question.correct_option == 3 %}text-success{% endif %}">
+                        3. {{ question.option3 }}
+                        {% if question.correct_option == 3 %}<span class="badge bg-success">Correct Answer</span>{% endif %}
+                    </p>
+                    <p class="{% if question.correct_option == 4 %}text-success{% endif %}">
+                        4. {{ question.option4 }}
+                        {% if question.correct_option == 4 %}<span class="badge bg-success">Correct Answer</span>{% endif %}
+                    </p>
+                </div>
+                <div class="student-answer mt-3">
+                    <p><strong>Student's Answer:</strong> Option {{ user_answers.get(question.id, 'Not answered') }}</p>
+                    {% if user_answers.get(question.id) == question.correct_option %}
+                        <div class="alert alert-success">Correct Answer</div>
+                    {% else %}
+                        <div class="alert alert-danger">
+                            Incorrect Answer. Correct answer was Option {{ question.correct_option }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mt-4">
+        <a href="{{ url_for('admin.send_feedback', score_id=score.id) }}" class="btn btn-primary">Send Feedback</a>
+        <a href="{{ url_for('admin.student_details', student_id=score.user.id) }}" class="btn btn-primary">Back</a>
+    </div>
+</div>
+{% endblock %}

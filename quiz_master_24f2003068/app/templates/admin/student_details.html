@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Student Details - {{ student.full_name }}{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Student Details: {{ student.full_name }}</h2>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Personal Info: </h5>
+            <p><strong>Email:</strong> {{ student.email }}</p>
+            <p><strong>Qualification:</strong> {{ student.qualification }}</p>
+            <p><strong>Date of Birth:</strong> {{ student.date_of_birth.strftime('%Y-%m-%d') if student.date_of_birth else 'Not provided' }}</p>
+        </div>
+    </div>
+    <h3>Quiz Attempts</h3>
+    <div class="quiz-scroll-container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Chapter</th>
+                    <th>Score</th>
+                    <th>Date & Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in student.scores %}
+                <tr>
+                    <td>{{ score.quiz.chapter.subject.name }}</td>
+                    <td>{{ score.quiz.chapter.name }}</td>
+                    <td>{{ score.total_scored }}/{{ score.quiz.questions.count() }}</td>
+                    <td>{{ score.time_stamp_of_attempt.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>
+                        <a href="{{ url_for('admin.view_student_answers', score_id=score.id) }}" class="btn btn-sm btn-info">View Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-primary mt-3">Back to Dashboard</a>
+</div>
+<style>
+    .quiz-scroll-container {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+</style>
+{% endblock %}
