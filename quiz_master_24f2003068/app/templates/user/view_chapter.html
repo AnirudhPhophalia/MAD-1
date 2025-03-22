@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ chapter.name }}{% endblock %}
+{% block content %}
+{% if current_user.is_admin %}
+    <div class="alert alert-warning">
+        You are admin. You cannot take quizes.
+        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-primary mt-2">Go to Admin Dashboard</a>
+    </div>
+{% else %}
+    <h2>{{ chapter.name }}</h2>
+    <p>{{ chapter.description }}</p>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <h3>Available Quizzes</h3>
+            <div class="list-group">
+                {% for quiz in quizzes %}
+                    <div class="list-group-item">
+                        <h5 class="mb-1">Quiz #{{ quiz.id }}</h5>
+                        <p>Date: {{ quiz.date_of_quiz.strftime('%Y-%m-%d') }}</p>
+                        <p>Duration: {{ quiz.time_duration }}</p>
+                        {% if quiz.remarks %}
+                            <p>{{ quiz.remarks }}</p>
+                        {% endif %}
+                        <a href="{{ url_for('user.take_quiz', quiz_id=quiz.id) }}" class="btn btn-primary">Take Quiz</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Quiz Results{% endblock %}
+{% block content %}
+<h2>Quiz Results</h2>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ quiz.chapter.name }} Quiz</h5>
+        <p class="card-text">Score: {{ score.total_scored }}/{{ quiz.questions.count() }}</p>
+        <p class="card-text">Attempted on: {{ score.time_stamp_of_attempt.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        {% if score.feedback %}
+        <div class="alert alert-info mt-3">
+            <h5>Feedback:</h5>
+            <p>{{ score.feedback.feedback }}</p>
+        </div>
+        {% endif %}
+        <div class="text-center mt-3">
+            <a href="{{ url_for('user.dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

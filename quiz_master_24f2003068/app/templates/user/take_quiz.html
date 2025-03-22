@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Take Quiz{% endblock %}
+{% block content %}
+<h2>Quiz for {{ quiz.chapter.name }}</h2>
+<p>Duration: {{ quiz.time_duration }}</p>
+{% if current_user.is_admin %}
+    <div class="alert alert-warning">
+        You are admin. You cannot take quizes.
+        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-primary mt-2">Go back to Dashboard</a>
+    </div>
+{% else %}
+    <form method="POST">
+        {% for question in questions %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Question {{ loop.index }}</h5>
+                    <p class="card-text">{{ question.question_statement }}</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option1_{{ question.id }}" value="1" required>
+                        <label class="form-check-label" for="option1_{{ question.id }}">{{ question.option1 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option2_{{ question.id }}" value="2">
+                        <label class="form-check-label" for="option2_{{ question.id }}">{{ question.option2 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" value="3" id="option3_{{ question.id }}">
+                        <label class="form-check-label" for="option3_{{ question.id }}">{{ question.option3 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option4_{{ question.id }}" value="4">
+                        <label class="form-check-label" for="option4_{{ question.id }}">{{ question.option4 }}</label>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit Quiz</button>
+    </form>
+{% endif %}
+{% endblock %}

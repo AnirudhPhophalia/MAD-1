@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ subject.name }}{% endblock %}
+{% block content %}
+<h2>{{ subject.name }}</h2>
+<p>{{ subject.description }}</p>
+<div class="row mt-4">
+    <div class="col-md-8">
+        <h3>Chapters</h3>
+        <div class="list-group">
+            {% for chapter in chapters %}
+                <a href="{{ url_for('user.view_chapter', chapter_id=chapter.id) }}" 
+                   class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">{{ chapter.name }}</h5>
+                    {% if chapter.description %}
+                        <p class="mb-1">{{ chapter.description }}</p>
+                    {% endif %}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

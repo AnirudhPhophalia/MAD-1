@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}My Feedback{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Feedback on Your Quizzes</h2>
+        {% if feedbacks %}
+            <ul class="list-group">
+                {% for feedback in feedbacks %}
+                    <li class="list-group-item">
+                        <strong>
+                            {{ feedback.timestamp.strftime('%Y-%m-%d %H:%M') if feedback.timestamp else 'Unknown Date' }}
+                        </strong>
+                        <p>{{ feedback.feedback }}</p> 
+                        <span class="badge bg-info">Quiz ID: {{ feedback.quiz_id }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No feedback received yet.</p>
+        {% endif %}
+        <a href="{{ url_for('user.dashboard') }}" class="btn btn-secondary mt-4">Back to Dashboard</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Announcements{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Latest Announcements</h2>
+
+    {% if announcements %}
+        <ul class="list-group">
+            {% for announcement in announcements %}
+                <li class="list-group-item">
+                    <strong>{{ announcement.timestamp.strftime('%Y-%m-%d %H:%M') }}</strong>
+                    <p>{{ announcement.message }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No announcements available.</p>
+    {% endif %}
+    <a href="{{ url_for('user.dashboard') }}" class="btn btn-secondary mt-4">Back to Dashboard</a>
+</div>
+{% endblock %}
