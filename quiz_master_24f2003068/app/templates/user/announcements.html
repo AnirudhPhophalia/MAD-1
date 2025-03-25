@@ -9,6 +9,7 @@
             {% for announcement in announcements %}
                 <li class="list-group-item">
                     <strong>{{ announcement.timestamp.strftime('%Y-%m-%d %H:%M') }}</strong>
+                    <h5>{{announcement.title}}</h5>
                     <p>{{ announcement.message }}</p>
                 </li>
             {% endfor %}
