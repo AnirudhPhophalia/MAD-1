@@ -182,6 +182,8 @@ def delete_quiz(quiz_id):
         return redirect(url_for('user.dashboard'))
     
     quiz = Quiz.query.get_or_404(quiz_id)
+    Feedback.query.filter_by(quiz_id=quiz_id).delete()
+    Score.query.filter_by(quiz_id=quiz_id).delete()
     db.session.delete(quiz)
     db.session.commit()
     flash('Quiz deleted')
