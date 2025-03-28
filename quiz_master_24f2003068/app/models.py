@@ -93,7 +93,7 @@ class Announcement(db.Model):#announcement table
     title = db.Column(db.String(255), nullable=False)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)  
-    admin = db.relationship('User', foreign_keys=[admin_id])
+    admin = db.relationship('User', foreign_keys=[admin_id],overlaps="admin_user,announcements")
     user = db.relationship('User', foreign_keys=[user_id])
 
 class Answer(db.Model):#answer table
