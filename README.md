@@ -22,7 +22,7 @@ Quiz_master is a multi-user application designed to help students prepare for ex
 ## Installation & Setup
 1. Clone the repository:
    ```sh
-   git clone https://yourusername/MAD-1.git
+   git clone https://AnirudhPhophalia/MAD-1.git
    cd quiz_master_24f2003068
    ```
 2. Install dependencies:
